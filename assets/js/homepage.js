@@ -14,7 +14,7 @@ var formSubmitHandler = function(event) {
     }else{
         alert("Please enter a GitHub username");
     }
-    console.log(event);
+    //console.log(event);
 };
 
 
@@ -41,23 +41,24 @@ var getUserRepos = function(user) {
   };
 
 
-userFormEl.addEventListener("submit", formSubmitHandler);
+
 
 var displayRepos = function(repos, searchTerm){
     if (repos.length === 0){
         repoContainerEl.textContent = "No repositories found";
         return;
     }
-    console.log(repos);
-    console.log(searchTerm);
-    repoContainerEl.textContent = "";
+    //console.log(repos);
+    //console.log(searchTerm);
+    //repoContainerEl.textContent = "";
     repoSearchTerm.textContent = searchTerm;
 
     for(var i=0; i<repos.length; i++){
         var repoName = repos[i].owner.login + "/" + repos[i].name;
 
-        var repoEl = document.createElement("div");
+        var repoEl = document.createElement("a");
         repoEl.classList = "list-item flex-row justify-space-between align-center";
+        repoEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
 
         var titleEl = document.createElement("span");
         titleEl.textContent = repoName;
@@ -76,5 +77,5 @@ var displayRepos = function(repos, searchTerm){
     }
 };
 
-
-getUserRepos();
+userFormEl.addEventListener("submit", formSubmitHandler);
+//getUserRepos();
